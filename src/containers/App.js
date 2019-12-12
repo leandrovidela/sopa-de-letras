@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import WordFind from "./WordFind";
+import Loader from "../components/Loader";
 
 const App = () => {
-  const [wordFind, setWordFind] = useState({ resources: [] });
-
   const [callApi, setCallApi] = useState({
     loading: true,
-    error: null
+    error: null,
+    data: []
   });
 
   useEffect(() => {
@@ -15,16 +15,15 @@ const App = () => {
 
     fetch("https://api.myjson.com/bins/o13pg")
       .then(response => response.json())
-      .then(data => {
-        setWordFind(data);
-        setCallApi({ loading: false });
+      .then(({ resources }) => {
+        setCallApi({ loading: false, data: resources });
       })
       .catch(function(error) {
         setCallApi({ loading: false, error: error });
       });
   }, []);
 
-  const [numWordFind, setNumWordFind] = useState("");
+  const [numWordFind, setNumWordFind] = useState(0);
 
   const setNumberOfWordFind = n => {
     setNumWordFind(n);
@@ -35,15 +34,15 @@ const App = () => {
   }
 
   if (callApi.loading) {
-    return <h5>Cargando juego</h5>;
+    return <Loader />;
   }
 
   return (
     <div className="api-wrapper">
-      {wordFind.resources.length > 0 && (
+      {callApi.data.length > 0 && (
         <main>
           <nav>
-            {wordFind.resources.map((el, i) => (
+            {callApi.data.map((el, i) => (
               <Button
                 key={i}
                 wordFindNumber={i}
@@ -51,7 +50,7 @@ const App = () => {
               />
             ))}
           </nav>
-          <WordFind wordFindSelected={wordFind.resources[numWordFind]} />
+          <WordFind wordFindSelected={callApi.data[numWordFind]} />
         </main>
       )}
     </div>

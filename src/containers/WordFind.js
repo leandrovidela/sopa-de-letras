@@ -120,9 +120,7 @@ const WordFind = ({ wordFindSelected }) => {
   };
 
   useEffect(() => {
-    if (typeof wordFindSelected != "undefined") {
-      startGame();
-    }
+    startGame();
   }, [wordFindSelected]);
 
   return (
