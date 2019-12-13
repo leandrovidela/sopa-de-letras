@@ -10,6 +10,8 @@ const App = () => {
     data: []
   });
 
+  const [numWordFind, setNumWordFind] = useState(0);
+
   useEffect(() => {
     setCallApi({ loading: true, error: null });
 
@@ -22,8 +24,6 @@ const App = () => {
         setCallApi({ loading: false, error: error });
       });
   }, []);
-
-  const [numWordFind, setNumWordFind] = useState(0);
 
   const setNumberOfWordFind = n => {
     setNumWordFind(n);
@@ -39,20 +39,18 @@ const App = () => {
 
   return (
     <div className="api-wrapper">
-      {callApi.data.length > 0 && (
-        <main>
-          <nav>
-            {callApi.data.map((el, i) => (
-              <Button
-                key={i}
-                wordFindNumber={i}
-                handleClick={setNumberOfWordFind}
-              />
-            ))}
-          </nav>
-          <WordFind wordFindSelected={callApi.data[numWordFind]} />
-        </main>
-      )}
+      <main>
+        <nav>
+          {callApi.data.map((el, i) => (
+            <Button
+              key={i}
+              wordFindNumber={i}
+              handleClick={setNumberOfWordFind}
+            />
+          ))}
+        </nav>
+        <WordFind wordFindSelected={callApi.data[numWordFind]} />
+      </main>
     </div>
   );
 };
