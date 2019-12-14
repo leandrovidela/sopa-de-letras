@@ -120,14 +120,14 @@ const WordFind = ({ wordFindSelected }) => {
   };
 
   useEffect(() => {
+    setCount(0);
+    setPosition([]);
     startGame();
   }, [wordFindSelected]);
 
   return (
     <Fragment>
-      {position.length > 0 && (
-        <Game vector={wordFindSelected} positions={position} count={count} />
-      )}
+      <Game vector={wordFindSelected} positions={position} count={count} />
     </Fragment>
   );
 };
