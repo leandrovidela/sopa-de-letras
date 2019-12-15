@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Game from "./Game";
 
 const WordFind = ({ wordFindSelected }) => {
@@ -125,10 +125,6 @@ const WordFind = ({ wordFindSelected }) => {
     startGame();
   }, [wordFindSelected]);
 
-  return (
-    <Fragment>
-      <Game vector={wordFindSelected} positions={position} count={count} />
-    </Fragment>
-  );
+  return <Game vector={wordFindSelected} positions={position} count={count} />;
 };
 export default WordFind;
