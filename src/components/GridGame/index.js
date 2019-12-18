@@ -1,7 +1,7 @@
 import React from "react";
-import ItemGridLetter from "./ItemGridLetter";
+import { ItemGridLetter } from "./../ItemGridLetter/";
 
-const GridGame = ({ stylesGrid, words }) => (
+export const GridGame = ({ stylesGrid, words }) => (
   <div className="wrapper-grid-wordfind">
     <div style={stylesGrid} id="grid-word-find">
       {words.map((el, i) => (
@@ -10,5 +10,3 @@ const GridGame = ({ stylesGrid, words }) => (
     </div>
   </div>
 );
-
-export default GridGame;

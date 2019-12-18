@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import GridGame from "../components/GridGame";
-import ShowResults from "../components/ShowResults";
+import React, { Fragment, useEffect, useState } from "react";
+import { GridGame } from "./../components/GridGame/";
+import { ShowResults } from "./../components/ShowResults/";
+import { GridResults } from "./../components/GridResults";
 
-const Game = ({ vector, positions, count }) => {
+export const Game = ({ vector, positions, count }) => {
   const [show, setShow] = useState(false);
   const [allWords, setAllWords] = useState([]);
   const [gridStyles, setGridSyles] = useState({
@@ -48,12 +49,14 @@ const Game = ({ vector, positions, count }) => {
   }, [vector]);
 
   return (
-    <section className="grid-results">
-      <GridGame stylesGrid={gridStyles} words={allWords} />
-      <ShowResults handleClickShowResults={showResultsInPuzzle} />
-      {show && <h2>La palabra "OIE" se econtró {count} veces.</h2>}
-    </section>
+    <GridResults>
+      {
+        <Fragment>
+          <GridGame stylesGrid={gridStyles} words={allWords} />
+          <ShowResults handleClickShowResults={showResultsInPuzzle} />
+          {show && <h2>La palabra "OIE" se econtró {count} veces.</h2>}
+        </Fragment>
+      }
+    </GridResults>
   );
 };
-
-export default Game;

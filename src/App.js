@@ -1,7 +1,8 @@
 import React, { Fragment, useState, useEffect, useReducer } from "react";
-import Button from "../components/Button";
-import WordFind from "./WordFind";
-import Loader from "../components/Loader";
+import { NavBar } from "./components/NavBar/";
+import { Button } from "./components/Button/";
+import { WordFind } from "./containers/WordFind";
+import { Loader } from "./components/Loader/";
 
 function callApiReducer(state, action) {
   switch (action.type) {
@@ -71,18 +72,8 @@ const App = () => {
         <Loader />
       ) : (
         <div className="api-wrapper">
-          <main>
-            <nav>
-              {state.data.map((el, i) => (
-                <Button
-                  key={i}
-                  wordFindNumber={i}
-                  handleClick={setNumberOfWordFind}
-                />
-              ))}
-            </nav>
-            <WordFind wordFindSelected={state.data[numWordFind]} />
-          </main>
+          <NavBar state={state} handleClickSetWordFind={setNumberOfWordFind} />
+          <WordFind wordFindSelected={state.data[numWordFind]} />
         </div>
       )}
     </Fragment>
@@ -90,3 +81,13 @@ const App = () => {
 };
 
 export default App;
+
+// <nav>
+// {state.data.map((el, i) => (
+//   <Button
+//     key={i}
+//     wordFindNumber={i}
+//     handleClick={setNumberOfWordFind}
+//   />
+// ))}
+// </nav>

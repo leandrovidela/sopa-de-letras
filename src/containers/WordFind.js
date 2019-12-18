@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Game from "./Game";
+import { Game } from "./Game";
 
-const WordFind = ({ wordFindSelected }) => {
+export const WordFind = ({ wordFindSelected }) => {
   const [count, setCount] = useState(0);
   const [position, setPosition] = useState([]);
 
@@ -127,4 +127,3 @@ const WordFind = ({ wordFindSelected }) => {
 
   return <Game vector={wordFindSelected} positions={position} count={count} />;
 };
-export default WordFind;
