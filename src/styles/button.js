@@ -23,6 +23,7 @@ export const Boton = styled.button`
 export const BotonFilled = styled(Boton)`
   color: #ffffff;
   background: #1a237e;
+  max-width: 300px;
   &:hover {
     color: #1a237e;
     background: #ffffff;

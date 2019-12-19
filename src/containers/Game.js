@@ -53,8 +53,11 @@ export const Game = ({ vector, positions, count }) => {
       {
         <Fragment>
           <GridGame stylesGrid={gridStyles} words={allWords} />
-          <ShowResults handleClickShowResults={showResultsInPuzzle} />
-          {show && <h2>La palabra "OIE" se econtró {count} veces.</h2>}
+          <ShowResults
+            show={show}
+            count={count}
+            handleClickShowResults={showResultsInPuzzle}
+          />
         </Fragment>
       }
     </GridResults>

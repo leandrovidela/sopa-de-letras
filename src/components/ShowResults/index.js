@@ -1,10 +1,13 @@
 import React from "react";
+import { TitleResults } from "./../TitleResults/";
 import { BotonFilled } from "../../styles/button";
+import { WrapperResults } from "./styles";
 
-export const ShowResults = ({ handleClickShowResults }) => (
-  <div className="show-result">
-    <BotonFilled className="btn-show-results" onClick={handleClickShowResults}>
+export const ShowResults = ({ handleClickShowResults, show, count }) => (
+  <WrapperResults>
+    <BotonFilled onClick={handleClickShowResults}>
       mostrar resultados
     </BotonFilled>
-  </div>
+    {show && <TitleResults count={count} />}
+  </WrapperResults>
 );
