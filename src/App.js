@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect, useReducer } from "react";
 import { NavBar } from "./components/NavBar/";
-import { Button } from "./components/Button/";
 import { WordFind } from "./containers/WordFind";
 import { Loader } from "./components/Loader/";
+import { GlobalSyles } from "./styles/globalSyles";
 
 function callApiReducer(state, action) {
   switch (action.type) {
@@ -10,23 +10,19 @@ function callApiReducer(state, action) {
       return {
         ...state
       };
-      break;
     case "success":
       return {
         ...state,
         loading: false,
         [action.field]: action.value
       };
-      break;
     case "error":
       return {
         ...state,
         loading: false,
         data: []
       };
-      break;
     default:
-      break;
   }
   return state;
 }
@@ -76,18 +72,9 @@ const App = () => {
           <WordFind wordFindSelected={state.data[numWordFind]} />
         </div>
       )}
+      <GlobalSyles />
     </Fragment>
   );
 };
 
 export default App;
-
-// <nav>
-// {state.data.map((el, i) => (
-//   <Button
-//     key={i}
-//     wordFindNumber={i}
-//     handleClick={setNumberOfWordFind}
-//   />
-// ))}
-// </nav>

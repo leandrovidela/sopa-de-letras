@@ -20,6 +20,22 @@ export const Game = ({ vector, positions, count }) => {
     setAllWords(words);
   };
 
+  let pepe = [];
+  let arr = [];
+
+  if (positions.length > 0) {
+    for (let i = 0; i < positions.length; i++) {
+      pepe.push(...positions[i]);
+    }
+    arr = pepe.filter((item, index) => {
+      return pepe.indexOf(item) === index;
+    });
+
+    console.log(arr);
+  } else {
+    console.log("no");
+  }
+
   const showResultsInPuzzle = () => {
     const itemsGrid = document.querySelectorAll(".grid-item");
 
@@ -27,10 +43,14 @@ export const Game = ({ vector, positions, count }) => {
       el.classList.remove("selected");
     });
 
-    positions.forEach((element, i) => {
+    /* positions.forEach((element, i) => {
       for (let i = 0; i < element.length; i++) {
         itemsGrid[element[i] - 1].classList.add("selected");
       }
+    }); */
+
+    arr.forEach((element, i) => {
+      itemsGrid[element - 1].classList.add("selected");
     });
 
     setShow(true);
